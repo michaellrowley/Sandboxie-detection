@@ -19,14 +19,13 @@ std::vector<PROCESSENTRY32> GetAllProcessesByNameW(std::wstring ProcessName) {
 	}
 	return ValidProcessesList;
 }
-bool IsRunningUnderSandbox() {
+bool IsRunningUnderSandboxie() {
 	std::vector<PROCESSENTRY32> ProcessList = GetAllProcessesByNameW(L"SbieSvc.exe");
 	//printf("[*] Found %d SbieSvc.exe processes.\n", ProcessList.size());
 	if (ProcessList.size() == 0) {
 		//printf("[!] Therefore I can't be in a Sandboxie+ sandbox.\n");
 		return false;
 	}
-	bool CouldTerminate = false;
 	for (PROCESSENTRY32 IterativeProcess : ProcessList) {
 		HANDLE IterativeProcessHandle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, IterativeProcess.th32ProcessID);
 		if (IterativeProcessHandle == INVALID_HANDLE_VALUE) {
@@ -47,6 +46,6 @@ bool IsRunningUnderSandbox() {
 }
 
 int main() {
-	printf("Verdict: %s", IsRunningUnderSandbox() ? "SANDBOX!\n" : "CLEAN!\n");
+	printf("Verdict: %s", IsRunningUnderSandboxie() ? "SANDBOX!\n" : "CLEAN!\n");
 	system("PAUSE");
 }
