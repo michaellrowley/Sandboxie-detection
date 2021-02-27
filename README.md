@@ -1,2 +1,3 @@
 # Sandboxie-detection
-Detect when you're running in a sandboxie sandbox.
+Detect when you're running in a Sandboxie+ sandbox using ``TerminateProcess``.
+Everything is explained in my writeup at https://michaellrowley.github.io/writeups/SandboxieDetection.html.
